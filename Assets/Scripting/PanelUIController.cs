@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace NovaSamples.HandMenu
 {
@@ -15,9 +16,14 @@ namespace NovaSamples.HandMenu
         [SerializeField]
         [Tooltip("A transform at the center of the hand-tracked palm.")]
         private Transform palmTransform = null;
+
         [SerializeField]
         [Tooltip("The threshold, in degrees, between the user's head and palm to activate/deactivate the Hand Launcher UI")]
-        private float showLauncherThreshold = 35f;
+        private float lowerShowLauncherThreshold = 50f;
+
+        [SerializeField]
+        [Tooltip("The threshold, in degrees, between the user's head and palm to activate/deactivate the Hand Launcher UI")]
+        private float upperShowLauncherThreshold = 60f;
 
         [Header("Panel Launching")]
         [SerializeField]
@@ -58,9 +64,7 @@ namespace NovaSamples.HandMenu
         {
             get
             {
-                float angleBetweenHeadAndPalm = Vector3.Angle(-palmTransform.up, headTrackedCamera.transform.forward);
-
-                return Mathf.Abs(angleBetweenHeadAndPalm) < showLauncherThreshold;
+                return getAngle() < upperShowLauncherThreshold && lowerShowLauncherThreshold < getAngle();
             }
         }
 
@@ -82,15 +86,16 @@ namespace NovaSamples.HandMenu
 
         private void Update()
         {
+            //Debug.Log(getAngle());
             if (selectedPanelActive)
             {
                 // Don't show hand launcher if a panel is active.
-                Debug.Log("Active");
                 return;
             }
 
             if (handLauncherActive) // Currently active
             {
+                Debug.Log("Active");
                 if (!HandLauncherShouldBeActive) // Should be inactive
                 {
                     // Hide
@@ -110,6 +115,13 @@ namespace NovaSamples.HandMenu
                 // Update position
                 RepositionMenu();
             }
+        }
+
+        private float getAngle()
+        {
+            float angleBetweenHeadAndPalm = Vector3.Angle(-palmTransform.up, headTrackedCamera.transform.forward);
+
+            return Mathf.Abs(angleBetweenHeadAndPalm);
         }
 
         /// <summary>

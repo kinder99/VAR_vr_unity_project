@@ -67,15 +67,6 @@ namespace NovaSamples.HandMenu
         [Tooltip("The duration, in seconds, of a given fade in/out animation.")]
         private float fadeAnimationDuration = .15f;
 
-        private InputDevice leftController;
-        private InputDevice rightController;
-
-         private const uint RightPointControlID = 1;
-        private const uint RightScrollControlID = 2;
-
-        private const uint LeftPointControlID = 3;
-        private const uint LeftScrollControlID = 4;
-
         /// <summary>
         /// The handle tracking any active fade in/out animations
         /// </summary>
@@ -103,15 +94,10 @@ namespace NovaSamples.HandMenu
             // directly, because it's not a "list item" that's going to be scrolled
             // but rather the listView itself.
             listView.UIBlock.AddGestureHandler<Gesture.OnScroll>(Scrolled);
-
-            InputDevices.deviceConnected += (_) => UpdateControllers();
-            InputDevices.deviceDisconnected += (_) => UpdateControllers();
         }
 
         private void Update()
         {
-            UpdateController(rightController, RightPointControlID, RightScrollControlID);
-            UpdateController(leftController, LeftPointControlID, LeftScrollControlID);
         }
 
         /// <summary>
@@ -242,70 +228,6 @@ namespace NovaSamples.HandMenu
             // This will lead to center-most items aligned to the right edge
             // and items towards the top/bottom will lie on the left edge.
             uiBlock.Position.X.Percent = cosTheta - uiBlock.CalculatedSize.X.Percent - uiBlock.CalculatedMargin.Left.Percent;
-        }
-
-        private void UpdateController(InputDevice controllerDevice, uint pointID, uint scrollID)
-        {
-            if (!controllerDevice.isValid)
-            {
-                // Controller not connected, nothing to do
-                return;
-            }
-
-            if (!controllerDevice.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position))
-            {
-                // Couldn't get position of controller
-                return;
-            }
-
-            if (!controllerDevice.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation))
-            {
-                // Couldn't get rotation of controller
-                return;
-            }
-
-            // Try to get the thumbstick and primary button state. If these fail,
-            // we will just use the default values
-            controllerDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed);
-            controllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 thumbstickValue);
-
-            // Convert position and rotation to world-space ray
-            Ray ray = new Ray(position, rotation * Vector3.forward);
-
-            if (thumbstickValue != Vector2.zero)
-            {
-                // If the thumbstick has a value, use it to scroll
-                Interaction.Update scrollUpdate = new Interaction.Update(ray, scrollID);
-                Interaction.Scroll(scrollUpdate, thumbstickValue);
-            }
-
-            // Point with the controller's ray and pressed state
-            Interaction.Update pointUpdate = new Interaction.Update(ray, pointID);
-            Interaction.Point(pointUpdate, pressed);
-        }
-
-        /// <summary>
-        /// Tries to get the controllers
-        /// </summary>
-        private void UpdateControllers()
-        {
-            List<InputDevice> controllers = new List<InputDevice>();
-            InputDeviceCharacteristics desiredCharacteristics = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Controller;
-
-            // Get the right controller
-            InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics | InputDeviceCharacteristics.Right, controllers);
-
-            if (controllers.Count > 0)
-            {
-                rightController = controllers[0];
-            }
-
-            // Get the left controller
-            InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics | InputDeviceCharacteristics.Left, controllers);
-            if (controllers.Count > 0)
-            {
-                leftController = controllers[0];
-            }
         }
     }
 }

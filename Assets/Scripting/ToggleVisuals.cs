@@ -1,66 +1,43 @@
 using Nova;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace NovaSamples.HandMenu
+[System.Serializable]
+public class ToggleVisuals : ItemVisuals
 {
-    /// <summary>
-    /// Visuals for a button which can toggle between two states, on and off.
-    /// </summary>
-    public class ToggleVisuals : ItemVisuals
+    public TextBlock label = null;
+    public UIBlock2D checkbox = null;
+    public UIBlock2D checkmark = null;
+
+    public Color DefaultColor;
+    public Color HoveredColor;
+    public Color PressedColor;
+
+    public bool isChecked
     {
-        [Header("Components")]
-        [Tooltip("The UIBlock2D to display the icon of the current toggle state.")]
-        public UIBlock2D Icon = null;
+        get => checkmark.gameObject.activeSelf;
+        set => checkmark.gameObject.SetActive(value);
+    }
 
-        [Header("Icons")]
-        [Tooltip("The icon to display while this toggle is \"toggled on\".")]
-        public Texture2D OnIcon = null;
-        [Tooltip("The icon to display while this toggle is \"toggled off\".")]
-        public Texture2D OffIcon = null;
+    internal static void HandleHover(Gesture.OnHover evt, ToggleVisuals target)
+    {
+        target.checkbox.Color = target.HoveredColor;
+    }
 
-        [Header("Animations")]
-        [Tooltip("The animation to run when transitioning from \"off\" to \"on\".")]
-        public BodyColorAnimation ToggleOnAnimation;
-        [Tooltip("The animation to run when transitioning from \"on\" to \"off\".")]
-        public BodyColorAnimation ToggleOffAnimation;
+    internal static void HandlePress(Gesture.OnPress evt, ToggleVisuals target)
+    {
+        target.checkbox.Color = target.PressedColor;
+    }
 
-        [SerializeField]
-        [Tooltip("The duration, in seconds, of the toggle on/off animations.")]
-        private float animationDuration = .15f;
+    internal static void HandleRelease(Gesture.OnRelease evt, ToggleVisuals target)
+    {
+        target.checkbox.Color = target.HoveredColor;
+    }
 
-        /// <summary>
-        /// The current toggle state.
-        /// </summary>
-        public bool ToggledOn { get; private set; } = true;
-
-        /// <summary>
-        /// The handle tracking any active toggle on/off animations. 
-        /// </summary>
-        private AnimationHandle animationHandle = default;
-
-        /// <summary>
-        /// Flip the current <see cref="ToggledOn"/> state, and update the visuals accordingly.
-        /// </summary>
-        public void Toggle()
-        {
-            // Cancel any running animation
-            animationHandle.Cancel();
-
-            // Flip toggled state
-            ToggledOn = !ToggledOn;
-
-            // Apply visual changes based on new toggled state
-            if (ToggledOn)
-            {
-                Icon.SetImage(OnIcon);
-                animationHandle = ToggleOnAnimation.Run(animationDuration);
-            }
-            else
-            {
-                Icon.SetImage(OffIcon);
-                animationHandle = ToggleOffAnimation.Run(animationDuration);
-            }
-        }
+    internal static void HandleUnhover(Gesture.OnUnhover evt, ToggleVisuals target)
+    {
+        target.checkbox.Color = target.DefaultColor;
     }
 }
-

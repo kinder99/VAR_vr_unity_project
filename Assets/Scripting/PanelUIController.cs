@@ -95,7 +95,7 @@ namespace NovaSamples.HandMenu
 
             if (handLauncherActive) // Currently active
             {
-                Debug.Log("Active");
+                //Debug.Log("Active");
                 if (!HandLauncherShouldBeActive) // Should be inactive
                 {
                     // Hide

@@ -28,9 +28,9 @@ namespace NovaSamples.HandMenu
         private UIBlock volumeUnfillBar = null;
 
         /// <summary>
-        /// The <see cref="ToggleVisuals"/> attached to the <see cref="muteButtonView"/>. 
+        /// The <see cref="ToggleVisualsImport"/> attached to the <see cref="muteButtonView"/>. 
         /// </summary>
-        private ToggleVisuals MuteButtonVisuals => muteButtonView.Visuals as ToggleVisuals;
+        private ToggleVisualsImport MuteButtonVisuals => muteButtonView.Visuals as ToggleVisualsImport;
 
         /// <summary>
         /// The current volume "muted" state.
@@ -45,10 +45,10 @@ namespace NovaSamples.HandMenu
         private void OnEnable()
         {
             // Subscribe to toggle click events on the quick toggle root
-            quickToggleRoot.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleQuickToggleClicked);
+            quickToggleRoot.AddGestureHandler<Gesture.OnClick, ToggleVisualsImport>(HandleQuickToggleClicked);
 
             // Subscribe to mute button toggle events
-            muteButtonView.UIBlock.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
+            muteButtonView.UIBlock.AddGestureHandler<Gesture.OnClick, ToggleVisualsImport>(HandleMuteToggled);
 
             // Subscribe to drag events on the volume slider
             volumeSlider.UIBlock.AddGestureHandler<Gesture.OnDrag>(HandleVolumeSlider);
@@ -57,15 +57,15 @@ namespace NovaSamples.HandMenu
         private void OnDisable()
         {
             // Unsubscribe from the gesture events previously subscribed to in OnEnable
-            quickToggleRoot.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleQuickToggleClicked);
-            muteButtonView.UIBlock.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
+            quickToggleRoot.RemoveGestureHandler<Gesture.OnClick, ToggleVisualsImport>(HandleQuickToggleClicked);
+            muteButtonView.UIBlock.RemoveGestureHandler<Gesture.OnClick, ToggleVisualsImport>(HandleMuteToggled);
             volumeSlider.UIBlock.RemoveGestureHandler<Gesture.OnDrag>(HandleVolumeSlider);
         }
 
         /// <summary>
         /// Toggle the volume mute state on click.
         /// </summary>
-        private void HandleMuteToggled(Gesture.OnClick evt, ToggleVisuals target)
+        private void HandleMuteToggled(Gesture.OnClick evt, ToggleVisualsImport target)
         {
             // In this event handler, target == MuteButtonVisuals.
 
@@ -146,7 +146,7 @@ namespace NovaSamples.HandMenu
         /// <summary>
         /// Toggle the visual state on click.
         /// </summary>
-        private void HandleQuickToggleClicked(Gesture.OnClick evt, ToggleVisuals target)
+        private void HandleQuickToggleClicked(Gesture.OnClick evt, ToggleVisualsImport target)
         {
             target.Toggle();
         }

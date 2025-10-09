@@ -21,6 +21,11 @@ public class ToggleVisuals : ItemVisuals
         set => checkmark.gameObject.SetActive(value);
     }
 
+    public void Toggle()
+    {
+        isChecked = !isChecked;
+    }
+
     internal static void HandleHover(Gesture.OnHover evt, ToggleVisuals target)
     {
         target.checkbox.Color = target.HoveredColor;

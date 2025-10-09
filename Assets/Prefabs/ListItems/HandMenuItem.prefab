@@ -820,6 +820,7 @@ GameObject:
   - component: {fileID: 7770715537347949102}
   - component: {fileID: 5377171490634969488}
   - component: {fileID: 5311163784696002939}
+  - component: {fileID: 4608517679335341327}
   m_Layer: 0
   m_Name: HandMenuItem
   m_TagString: Untagged
@@ -1047,15 +1048,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visuals:
-    rid: 0
+    rid: 4674147287897473025
   references:
     version: 2
     RefIds:
-    - rid: 0
+    - rid: 4674147287897473025
       type: {class: PanelItemVisuals, ns: NovaSamples.HandMenu, asm: Assembly-CSharp}
       data:
         Icon: {fileID: 7770715538564704888}
         Background: {fileID: 7770715536823344654}
+--- !u!114 &4608517679335341327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7770715537347949136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be034265e42096d4ab299cf0d86a3dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftController:
+    controller: {fileID: 0}
+    interactor: {fileID: 0}
+    grip: 0
+    id: 1
+  rightController:
+    controller: {fileID: 0}
+    interactor: {fileID: 0}
+    grip: 0
+    id: 2
 --- !u!1 &7770715537804831511
 GameObject:
   m_ObjectHideFlags: 0

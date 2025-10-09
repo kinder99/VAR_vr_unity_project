@@ -29,10 +29,11 @@ public class InputManager : MonoBehaviour
             {
                 return;
             }
+
             grip = controller.selectAction.action.IsPressed();
             if (grip) { Debug.Log("press"); }
             Ray ray = new Ray(interactor.transform.position, interactor.transform.rotation * Vector3.forward);
-            Debug.Log(interactor.transform.rotation);
+            //Debug.Log(interactor.transform.rotation);
             Interaction.Update pointUpdate = new Interaction.Update(ray, id);
             Interaction.Point(pointUpdate, grip);
         }

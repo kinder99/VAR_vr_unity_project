@@ -3614,7 +3614,23 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5463690850445004026}
+    - targetCorrespondingSourceObject: {fileID: 7599235840010813287, guid: 46640eb424e726547b5f2426e3180e95,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2320054411263340294}
   m_SourcePrefab: {fileID: 100100000, guid: 46640eb424e726547b5f2426e3180e95, type: 3}
+--- !u!114 &5792075399474738561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7599235840010813282, guid: 46640eb424e726547b5f2426e3180e95,
+    type: 3}
+  m_PrefabInstance: {fileID: 4113050179588492003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792075399474738564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c395591f6f08fb41897eb437d91b587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5792075399474738563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7599235840010813280, guid: 46640eb424e726547b5f2426e3180e95,
@@ -3649,3 +3665,20 @@ MonoBehaviour:
     interactor: {fileID: 0}
     grip: 0
     id: 2
+--- !u!114 &2320054411263340294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792075399474738564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa83bab745f062f4cb73e6fa784ce5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 5792075399474738561}
+  BoolSetting:
+    name: Toggle
+    state: 0
+  ItemView: {fileID: 6933073878016204166}

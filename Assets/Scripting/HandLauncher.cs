@@ -127,6 +127,7 @@ namespace NovaSamples.HandMenu
         /// </summary>
         private void Click(Gesture.OnClick evt, PanelItemVisuals target, int index)
         {
+            Debug.Log("Clicked");
             OnPanelSelected?.Invoke(panels[index]);
         }
 

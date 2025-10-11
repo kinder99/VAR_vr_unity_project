@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.75, y: 0, z: 14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7770715537347949103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -240,7 +240,7 @@ MonoBehaviour:
   ObstructDrags: 0
   DragThreshold: 1
   LowAccuracyDragThreshold: 85
-  ClickBehavior: 2
+  ClickBehavior: 0
   navigable: 1
   onSelect: 0
   autoSelect: 0
@@ -286,11 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94662fab46346646aca8aa42bed51a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PushVisual: {fileID: 6174024059001504837}
-  ClickThresholdPercent: 0.25
-  UnpushAnimationDuration: 0.15
-  animationStyle: 0
-  ClickAfterAnimationCompleted: 0
+  interactable: {fileID: 8052782810683495544}
 --- !u!1 &7465995837486401874
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +816,7 @@ GameObject:
   - component: {fileID: 7770715537347949102}
   - component: {fileID: 5377171490634969488}
   - component: {fileID: 5311163784696002939}
-  - component: {fileID: 4608517679335341327}
+  - component: {fileID: 6608810211022760472}
   m_Layer: 0
   m_Name: HandMenuItem
   m_TagString: Untagged
@@ -1057,7 +1053,9 @@ MonoBehaviour:
       data:
         Icon: {fileID: 7770715538564704888}
         Background: {fileID: 7770715536823344654}
---- !u!114 &4608517679335341327
+        root: {fileID: 5377171490634969488}
+        isChecked: 0
+--- !u!114 &6608810211022760472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1066,19 +1064,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7770715537347949136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be034265e42096d4ab299cf0d86a3dae, type: 3}
+  m_Script: {fileID: 11500000, guid: a133fbddc314fd9408a8e7968925d4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftController:
-    controller: {fileID: 0}
-    interactor: {fileID: 0}
-    grip: 0
-    id: 1
-  rightController:
-    controller: {fileID: 0}
-    interactor: {fileID: 0}
-    grip: 0
-    id: 2
+  root: {fileID: 5377171490634969488}
+  BoolSetting:
+    name: isChecked
+    state: 0
+  ItemView: {fileID: 5311163784696002939}
 --- !u!1 &7770715537804831511
 GameObject:
   m_ObjectHideFlags: 0

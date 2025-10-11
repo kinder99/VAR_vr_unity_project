@@ -17,6 +17,25 @@ namespace NovaSamples.HandMenu
         public UIBlock2D Icon;
         [Tooltip("The background visual to style to the theme of the panel.")]
         public UIBlock2D Background;
+
+        public UIBlock root = null;
+
+        private void Start()
+        {
+            root.AddGestureHandler<Gesture.OnClick, PanelItemVisuals>(HandleClicked);
+        }
+
+        public bool isChecked = false;
+
+        public void Toggle()
+        {
+            isChecked = !isChecked;
+        }
+
+        private void HandleClicked(Gesture.OnClick e, PanelItemVisuals target)
+        {
+            Toggle();
+        }
     }
 
     /// <summary>
@@ -71,6 +90,8 @@ namespace NovaSamples.HandMenu
         /// The handle tracking any active fade in/out animations
         /// </summary>
         private AnimationHandle fadeAnimationHandle = default;
+
+        public BoolSetting BoolSetting = new BoolSetting();
 
         private void Start()
         {
@@ -127,7 +148,9 @@ namespace NovaSamples.HandMenu
         /// </summary>
         private void Click(Gesture.OnClick evt, PanelItemVisuals target, int index)
         {
-            Debug.Log("Clicked");
+            BoolSetting.state = !BoolSetting.state;
+            target.isChecked = BoolSetting.state;
+            //Debug.Log(target.isChecked);
             OnPanelSelected?.Invoke(panels[index]);
         }
 
@@ -144,6 +167,8 @@ namespace NovaSamples.HandMenu
             // I.e.
             // evt.UserData == panels[index]
             PanelItem panel = evt.UserData;
+
+            Debug.Log(panel);
 
             // Assign the icon and theme the visuals with
             // the primary/secondary panel colors.

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3146719391311938068}
   - component: {fileID: 6933073878016204166}
   m_Layer: 0
-  m_Name: ToggleSetting
+  m_Name: AnchorSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,9 +246,9 @@ MonoBehaviour:
     - rid: 1645631555997270017
       type: {class: ToggleVisuals, ns: , asm: Assembly-CSharp}
       data:
-        label: {fileID: 0}
-        checkbox: {fileID: 0}
-        checkmark: {fileID: 0}
+        label: {fileID: 8821919395851572879}
+        checkbox: {fileID: 7675648512057210404}
+        checkmark: {fileID: 7050311261831093105}
         DefaultColor: {r: 1, g: 1, b: 1, a: 0}
         HoveredColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0}
         PressedColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0}
@@ -2841,7 +2841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34.181244, y: 0}
+  m_AnchoredPosition: {x: -29.618752, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4139009508728453121
@@ -2915,7 +2915,7 @@ MonoBehaviour:
   layout:
     Size:
       X:
-        Raw: 68.362495
+        Raw: 59.2375
         Type: 0
       Y:
         Raw: 21.348001
@@ -3096,7 +3096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TOGGLE
+  m_text: Anchor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88859655ac95d304998f9a96568d29aa, type: 2}
   m_sharedMaterial: {fileID: 1805697429188284346, guid: 88859655ac95d304998f9a96568d29aa,

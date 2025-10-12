@@ -64,5 +64,11 @@ public abstract class Panel : MonoBehaviour
         // Notify listeners the panel has been closed
         OnClosed?.Invoke();
     }
+
+    public void Exit()
+    {
+        gameObject.SetActive(false);
+        OnClosed?.Invoke();
+    }
 }
 

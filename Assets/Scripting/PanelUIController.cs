@@ -127,7 +127,7 @@ namespace NovaSamples.HandMenu
         /// <summary>
         /// Close the <see cref="handLauncher"/> UI.
         /// </summary>
-        private void HideHandLauncher()
+        public void HideHandLauncher()
         {
             if (!handLauncherActive)
             {

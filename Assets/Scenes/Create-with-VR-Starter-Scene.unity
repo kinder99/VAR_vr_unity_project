@@ -196,12 +196,18 @@ MonoBehaviour:
   leftController:
     controller: {fileID: 1747829951}
     interactor: {fileID: 1747829950}
+    settings: {fileID: 861018148}
+    collider: {fileID: 1205230119}
     grip: 0
+    raycast: 1
     id: 1
   rightController:
     controller: {fileID: 1210776319}
     interactor: {fileID: 1210776318}
+    settings: {fileID: 861018148}
+    collider: {fileID: 1535570695}
     grip: 0
+    raycast: 1
     id: 2
 --- !u!4 &85778369 stripped
 Transform:
@@ -1898,7 +1904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &892381458
 Transform:
   m_ObjectHideFlags: 0
@@ -1921,7 +1927,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892381457}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
   m_Name: 
@@ -2143,7 +2149,7 @@ Transform:
   m_GameObject: {fileID: 981144638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2572,6 +2578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205230118}
+  - component: {fileID: 1205230119}
   m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
@@ -2595,6 +2602,27 @@ Transform:
   - {fileID: 981144639}
   m_Father: {fileID: 1747829946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1205230119
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205230117}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0.1}
 --- !u!1 &1210776313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,7 +2815,7 @@ MonoBehaviour:
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 0}
   m_BlockedReticle: {fileID: 0}
-  m_StopLineAtFirstRaycastHit: 1
+  m_StopLineAtFirstRaycastHit: 0
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
@@ -3845,6 +3873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1535570694}
+  - component: {fileID: 1535570695}
   m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
@@ -3867,6 +3896,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1210776314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1535570695
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535570693}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0.1}
 --- !u!1 &1587173536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3884,7 +3934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1587173537
 Transform:
   m_ObjectHideFlags: 0
@@ -3907,7 +3957,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587173536}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
   m_Name: 
@@ -4086,12 +4136,18 @@ MonoBehaviour:
   leftController:
     controller: {fileID: 1747829951}
     interactor: {fileID: 1747829950}
+    settings: {fileID: 861018148}
+    collider: {fileID: 1205230119}
     grip: 0
+    raycast: 0
     id: 1
   rightController:
     controller: {fileID: 1210776319}
     interactor: {fileID: 1210776318}
+    settings: {fileID: 861018148}
+    collider: {fileID: 1535570695}
     grip: 0
+    raycast: 0
     id: 2
 --- !u!1001 &1718133905
 PrefabInstance:
@@ -4484,7 +4540,7 @@ MonoBehaviour:
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 0}
   m_BlockedReticle: {fileID: 0}
-  m_StopLineAtFirstRaycastHit: 1
+  m_StopLineAtFirstRaycastHit: 0
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
@@ -5884,9 +5940,19 @@ PrefabInstance:
       objectReference: {fileID: 775344401}
     - target: {fileID: 2320054411263340294, guid: aaf6e971936da4047aafadf4029fe3e1,
         type: 3}
+      propertyPath: leftController
+      value: 
+      objectReference: {fileID: 1747829951}
+    - target: {fileID: 2320054411263340294, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
       propertyPath: ItemViewRaycast
       value: 
       objectReference: {fileID: 450472954}
+    - target: {fileID: 2320054411263340294, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: rightController
+      value: 
+      objectReference: {fileID: 1210776319}
     - target: {fileID: 2320054411263340294, guid: aaf6e971936da4047aafadf4029fe3e1,
         type: 3}
       propertyPath: BoolSetting.name
@@ -5901,6 +5967,11 @@ PrefabInstance:
         type: 3}
       propertyPath: BoolSettingRaycast.name
       value: Raycast
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320054411263340294, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: BoolSettingRaycast.state
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2583287892482088824, guid: aaf6e971936da4047aafadf4029fe3e1,
         type: 3}
@@ -5972,6 +6043,36 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5333771280779689019, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: AnchorView
+      value: 
+      objectReference: {fileID: 775344401}
+    - target: {fileID: 5333771280779689019, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: RaycastView
+      value: 
+      objectReference: {fileID: 450472954}
+    - target: {fileID: 5463690850445004026, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: leftController.collider
+      value: 
+      objectReference: {fileID: 1205230119}
+    - target: {fileID: 5463690850445004026, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: leftController.settings
+      value: 
+      objectReference: {fileID: 861018148}
+    - target: {fileID: 5463690850445004026, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: rightController.collider
+      value: 
+      objectReference: {fileID: 1535570695}
+    - target: {fileID: 5463690850445004026, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: rightController.settings
+      value: 
+      objectReference: {fileID: 861018148}
     - target: {fileID: 5463690850445004026, guid: aaf6e971936da4047aafadf4029fe3e1,
         type: 3}
       propertyPath: leftController.controller
@@ -6017,10 +6118,20 @@ PrefabInstance:
       propertyPath: layout.Position.Y.Raw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5792075399474738561, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: layout.Position.Z.Raw
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5792075399474738563, guid: aaf6e971936da4047aafadf4029fe3e1,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792075399474738563, guid: aaf6e971936da4047aafadf4029fe3e1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5792075399474738564, guid: aaf6e971936da4047aafadf4029fe3e1,
         type: 3}
@@ -6253,6 +6364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: panels.Array.data[0].SecondaryColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016348368834833541, guid: 733772758a5ef5146a6e7a6c6c180b35,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1840378054451542614, guid: 733772758a5ef5146a6e7a6c6c180b35,
         type: 3}

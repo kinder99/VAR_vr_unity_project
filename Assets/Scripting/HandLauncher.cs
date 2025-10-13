@@ -114,7 +114,7 @@ namespace NovaSamples.HandMenu
             // We subscribe on the UIBlock here, as opposed to the listView
             // directly, because it's not a "list item" that's going to be scrolled
             // but rather the listView itself.
-            listView.UIBlock.AddGestureHandler<Gesture.OnScroll>(Scrolled);
+            //listView.UIBlock.AddGestureHandler<Gesture.OnScroll>(Scrolled);
         }
 
         private void Update()

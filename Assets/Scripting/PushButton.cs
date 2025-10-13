@@ -38,7 +38,7 @@ namespace NovaSamples.HandMenu
 
         private void Update()
         {
-            Debug.Log(isPressed);
+            //Debug.Log(isPressed);
         }
 
         /// <summary>

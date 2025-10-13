@@ -82,6 +82,8 @@ namespace NovaSamples.HandMenu
 
             // Start with the hand launcher inactive
             handLauncher.gameObject.SetActive(false);
+
+            PlayerPrefs.SetInt("raycast", 1);
         }
 
         private void Update()

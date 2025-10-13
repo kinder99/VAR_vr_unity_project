@@ -24,6 +24,8 @@ public class RaycastVisuals : ItemVisuals
     public void Toggle()
     {
         isChecked = !isChecked;
+        PlayerPrefs.SetInt("raycast", isChecked? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     internal static void HandleHover(Gesture.OnHover evt, RaycastVisuals target)

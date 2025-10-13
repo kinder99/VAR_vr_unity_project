@@ -13,6 +13,7 @@ public class SettingsMisc : MonoBehaviour
     void Start()
     {
         BoolSetting = settings.BoolSettingAnchor;
+
     }
 
     // Update is called once per frame

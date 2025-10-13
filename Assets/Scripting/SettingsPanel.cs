@@ -40,9 +40,17 @@ public class SettingsPanel : Panel
     /// <summary>
     /// The current volume "muted" state.
     /// </summary>
-    private bool isAnchored => !AnchorVisuals.isChecked;
+    public bool isAnchored
+    {
+        get => !AnchorVisuals.isChecked;
+        set => AnchorVisuals.isChecked = value;
+    }
 
-    private bool isRaycasting => RaycastVisuals.isChecked;
+    public bool isRaycasting
+    {
+        get => RaycastVisuals.isChecked;
+        set => RaycastVisuals.isChecked = value;
+    }
 
     /// <summary>
     /// The current volume level. 1 == 100%.
@@ -54,9 +62,13 @@ public class SettingsPanel : Panel
         // Subscribe to toggle click events on the quick toggle root
         quickToggleRoot.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleQuickToggleClicked);
 
-        // Subscribe to mute button toggle events
-        AnchorView.UIBlock.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
+        // Subscribe to anchor button toggle events
+        AnchorView.UIBlock.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleAnchorToggled);
 
+        RaycastView.UIBlock.AddGestureHandler<Gesture.OnClick, RaycastVisuals>(HandleRaycastToggled);
+
+        //isAnchored = false;
+        //isRaycasting = true;
         // Subscribe to drag events on the volume slider
         //volumeSlider.UIBlock.AddGestureHandler<Gesture.OnDrag>(HandleVolumeSlider);
     }
@@ -65,32 +77,28 @@ public class SettingsPanel : Panel
     {
         // Unsubscribe from the gesture events previously subscribed to in OnEnable
         quickToggleRoot.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleQuickToggleClicked);
-        AnchorView.UIBlock.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
+        AnchorView.UIBlock.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleAnchorToggled);
+        RaycastView.UIBlock.RemoveGestureHandler<Gesture.OnClick, RaycastVisuals> (HandleRaycastToggled);
         //volumeSlider.UIBlock.RemoveGestureHandler<Gesture.OnDrag>(HandleVolumeSlider);
     }
 
     /// <summary>
     /// Toggle the volume mute state on click.
     /// </summary>
-    private void HandleMuteToggled(Gesture.OnClick evt, ToggleVisuals target)
+    private void HandleAnchorToggled(Gesture.OnClick evt, ToggleVisuals target)
     {
         // In this event handler, target == AnchorVisuals.
 
-        if (!target.isChecked)
-        {
-            // If it was muted, bump it back to at least 25%
-            volumePercent = Mathf.Max(0.25f, volumePercent);
-        }
+        // Flip the toggled state
+        target.Toggle();
+    }
+
+    private void HandleRaycastToggled(Gesture.OnClick evt, RaycastVisuals target)
+    {
+        // In this event handler, target == AnchorVisuals.
 
         // Flip the toggled state
         target.Toggle();
-
-        // Making a simple assumption that the slider is draggable
-        // either only on the X axis or only on the Y axis.
-        //int axis = volumeSlider.Draggable.X ? 0 : 1;
-
-        // Sync the slider visuals to the newly toggled mute state
-        //UpdateVolumeVisuals(axis);
     }
 
     /// <summary>
@@ -156,6 +164,10 @@ public class SettingsPanel : Panel
     private void HandleQuickToggleClicked(Gesture.OnClick evt, ToggleVisuals target)
     {
         target.Toggle();
+    }
+
+    private void Update()
+    {
     }
 }
 

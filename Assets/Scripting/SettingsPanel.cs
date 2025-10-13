@@ -13,8 +13,14 @@ public class SettingsPanel : Panel
 
     //[Header("Volume")]
     [SerializeField]
-    [Tooltip("The ItemView with a ToggleVisuals representing a \"mute\" toggle button.")]
-    private ItemView muteButtonView = null;
+    [Tooltip("The ItemView with a ToggleVisuals representing the \"anchor\" toggle button.")]
+    private ItemView AnchorView = null;
+
+    //[Header("Volume")]
+    [SerializeField]
+    [Tooltip("The ItemView with a ToggleVisuals representing the \"anchor\" toggle button.")]
+    private ItemView RaycastView = null;
+
     // [SerializeField]
     // [Tooltip("The Interactable root of a volume slider control.")]
     // private Interactable volumeSlider = null;
@@ -26,14 +32,17 @@ public class SettingsPanel : Panel
     // private UIBlock volumeUnfillBar = null;
 
     /// <summary>
-    /// The <see cref="ToggleVisuals"/> attached to the <see cref="muteButtonView"/>. 
+    /// The <see cref="ToggleVisuals"/> attached to the <see cref="AnchorView"/>. 
     /// </summary>
-    private ToggleVisuals MuteButtonVisuals => muteButtonView.Visuals as ToggleVisuals;
+    private ToggleVisuals AnchorVisuals => AnchorView.Visuals as ToggleVisuals;
+    private RaycastVisuals RaycastVisuals => RaycastView.Visuals as RaycastVisuals;
 
     /// <summary>
     /// The current volume "muted" state.
     /// </summary>
-    private bool IsMuted => !MuteButtonVisuals.isChecked;
+    private bool isAnchored => !AnchorVisuals.isChecked;
+
+    private bool isRaycasting => RaycastVisuals.isChecked;
 
     /// <summary>
     /// The current volume level. 1 == 100%.
@@ -46,7 +55,7 @@ public class SettingsPanel : Panel
         quickToggleRoot.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleQuickToggleClicked);
 
         // Subscribe to mute button toggle events
-        muteButtonView.UIBlock.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
+        AnchorView.UIBlock.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
 
         // Subscribe to drag events on the volume slider
         //volumeSlider.UIBlock.AddGestureHandler<Gesture.OnDrag>(HandleVolumeSlider);
@@ -56,7 +65,7 @@ public class SettingsPanel : Panel
     {
         // Unsubscribe from the gesture events previously subscribed to in OnEnable
         quickToggleRoot.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleQuickToggleClicked);
-        muteButtonView.UIBlock.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
+        AnchorView.UIBlock.RemoveGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleMuteToggled);
         //volumeSlider.UIBlock.RemoveGestureHandler<Gesture.OnDrag>(HandleVolumeSlider);
     }
 
@@ -65,7 +74,7 @@ public class SettingsPanel : Panel
     /// </summary>
     private void HandleMuteToggled(Gesture.OnClick evt, ToggleVisuals target)
     {
-        // In this event handler, target == MuteButtonVisuals.
+        // In this event handler, target == AnchorVisuals.
 
         if (!target.isChecked)
         {
@@ -118,9 +127,9 @@ public class SettingsPanel : Panel
 
         // If the slider no longer matches the mute
         // toggle state, then update the mute toggle.
-        if (IsMuted == volumePercent > 0)
+        if (isAnchored == volumePercent > 0)
         {
-            MuteButtonVisuals.Toggle();
+            AnchorVisuals.Toggle();
         }
 
         // Sync the slider visuals to the newly adjusted volume level.
@@ -134,7 +143,7 @@ public class SettingsPanel : Panel
     private void UpdateVolumeVisuals(int axis)
     {
         // If we're muted, set to 0, otherwise use the cached volume percent
-        float percent = IsMuted ? 0 : volumePercent;
+        float percent = isAnchored ? 0 : volumePercent;
 
         // Resize the visuals to match the volume setting.
         //volumeFillBar.Size[axis] = Length.Percentage(percent);

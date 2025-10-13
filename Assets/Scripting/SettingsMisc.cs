@@ -12,7 +12,7 @@ public class SettingsMisc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BoolSetting = settings.BoolSetting;
+        BoolSetting = settings.BoolSettingAnchor;
     }
 
     // Update is called once per frame

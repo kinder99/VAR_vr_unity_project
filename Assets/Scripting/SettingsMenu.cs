@@ -8,9 +8,10 @@ public class SettingsMenu : MonoBehaviour
 {
     public UIBlock root = null;
 
-    [Header("Temporary")]
-    public BoolSetting BoolSetting = new BoolSetting();
-    public ItemView ItemView = null;
+    public BoolSetting BoolSettingAnchor = new BoolSetting();
+    public BoolSetting BoolSettingRaycast = new BoolSetting();
+    public ItemView ItemViewAnchor = null;
+    public ItemView ItemViewRaycast = null;
 
     private void Start()
     {
@@ -21,16 +22,37 @@ public class SettingsMenu : MonoBehaviour
 
         root.AddGestureHandler<Gesture.OnClick, ToggleVisuals>(HandleToggleClicked);
 
-        Bind(BoolSetting, ItemView.Visuals as ToggleVisuals);
+        BindAnchor(BoolSettingAnchor, ItemViewAnchor.Visuals as ToggleVisuals);
+
+        root.AddGestureHandler<Gesture.OnHover, RaycastVisuals>(RaycastVisuals.HandleHover);
+        root.AddGestureHandler<Gesture.OnUnhover, RaycastVisuals>(RaycastVisuals.HandleUnhover);
+        root.AddGestureHandler<Gesture.OnPress, RaycastVisuals>(RaycastVisuals.HandlePress);
+        root.AddGestureHandler<Gesture.OnRelease, RaycastVisuals>(RaycastVisuals.HandleRelease);
+
+        root.AddGestureHandler<Gesture.OnClick, RaycastVisuals>(HandleToggleClicked);
+
+        BindRaycast(BoolSettingRaycast, ItemViewRaycast.Visuals as RaycastVisuals);
     }
 
     private void HandleToggleClicked(Gesture.OnClick evt, ToggleVisuals target)
     {
-        BoolSetting.state = !BoolSetting.state;
-        target.isChecked = BoolSetting.state;
+        BoolSettingAnchor.state = !BoolSettingAnchor.state;
+        target.isChecked = BoolSettingAnchor.state;
     }
 
-    private void Bind(BoolSetting setting, ToggleVisuals visuals)
+    private void HandleToggleClicked(Gesture.OnClick evt, RaycastVisuals target)
+    {
+        BoolSettingRaycast.state = !BoolSettingRaycast.state;
+        target.isChecked = BoolSettingRaycast.state;
+    }
+
+    private void BindAnchor(BoolSetting setting, ToggleVisuals visuals)
+    {
+        visuals.label.Text = setting.name;
+        visuals.isChecked = setting.state;
+    }
+
+    private void BindRaycast(BoolSetting setting, RaycastVisuals visuals)
     {
         visuals.label.Text = setting.name;
         visuals.isChecked = setting.state;

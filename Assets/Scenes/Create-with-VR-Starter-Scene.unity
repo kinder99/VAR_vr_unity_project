@@ -483,6 +483,9 @@ MonoBehaviour:
   playerCamera: {fileID: 1588664097}
   playerCollider: {fileID: 1718292113}
   floorReference: {fileID: 984743289}
+  selectEnter:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &162960496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2527,7 +2530,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

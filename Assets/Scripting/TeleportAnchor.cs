@@ -28,7 +28,7 @@ public class TeleportAnchor : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("origin : " + origin.transform.position);
+        //Debug.Log("origin : " + origin.transform.position);
     }
 
     public void Test(SelectEnterEventArgs args)

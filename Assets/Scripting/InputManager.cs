@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
 
             grip = controller.selectAction.action.IsPressed();
             //if (grip) { Debug.Log("press"); }
-            Debug.Log(PlayerPrefs.GetInt("raycast"));
+            //Debug.Log(PlayerPrefs.GetInt("raycast"));
             bool doRay = true;
             if (PlayerPrefs.GetInt("raycast") == 0)
             {
@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
             if (doRay)
             {
                 Ray ray = new Ray(interactor.transform.position, interactor.transform.rotation * Vector3.forward);
-                Debug.Log("pew");
+                //Debug.Log("pew");
                 Interaction.Update pointUpdate = new Interaction.Update(ray, id);
                 Interaction.Point(pointUpdate, grip);
             }

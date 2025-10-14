@@ -47,7 +47,7 @@ public class SettingsMenu : MonoBehaviour
     {
         //BoolSettingRaycast.state = !BoolSettingRaycast.state;
         target.isChecked = BoolSettingRaycast.state;
-        Debug.Log(target.isChecked);
+        //Debug.Log(target.isChecked);
         if (target.isChecked)
         {
             leftController.GetComponent<XRRayInteractor>().enabled = true;

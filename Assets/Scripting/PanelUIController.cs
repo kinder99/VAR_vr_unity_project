@@ -23,7 +23,7 @@ namespace NovaSamples.HandMenu
 
         [SerializeField]
         [Tooltip("The threshold, in degrees, between the user's head and palm to activate/deactivate the Hand Launcher UI")]
-        private float upperShowLauncherThreshold = 60f;
+        private float upperShowLauncherThreshold = 80f;
 
         [Header("Panel Launching")]
         [SerializeField]
@@ -121,7 +121,7 @@ namespace NovaSamples.HandMenu
 
         private float getAngle()
         {
-            float angleBetweenHeadAndPalm = Vector3.Angle(-palmTransform.up, headTrackedCamera.transform.forward);
+            float angleBetweenHeadAndPalm = Vector3.Angle(palmTransform.forward, headTrackedCamera.transform.forward);
 
             return Mathf.Abs(angleBetweenHeadAndPalm);
         }

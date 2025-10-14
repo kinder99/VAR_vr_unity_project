@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1279278882096475223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.75, y: 0, z: 14}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -316,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 7465995837486401874}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -878,9 +878,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7770715537347949103}
   - component: {fileID: 7770715537347949102}
-  - component: {fileID: 5377171490634969488}
-  - component: {fileID: 5311163784696002939}
   - component: {fileID: 6608810211022760472}
+  - component: {fileID: 6797612114367876844}
+  - component: {fileID: 2950519244984934187}
+  - component: {fileID: 1200192328313735409}
+  - component: {fileID: 1056917954894941835}
   m_Layer: 0
   m_Name: HandMenuItem
   m_TagString: Untagged
@@ -917,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9117b6d975111c47b064a4373cc67ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5377171490634969488
+--- !u!114 &6608810211022760472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -926,7 +928,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7770715537347949136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bed4401130c3b04193ec5a2e02ee773, type: 3}
+  m_Script: {fileID: 11500000, guid: a133fbddc314fd9408a8e7968925d4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 0}
+  BoolSetting:
+    name: isChecked
+    state: 0
+  ItemView: {fileID: 0}
+--- !u!114 &6797612114367876844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7770715537347949136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816c4f69f9c763745b3e13081538e4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sourceID:
@@ -934,23 +953,23 @@ MonoBehaviour:
   layout:
     Size:
       X:
-        Raw: 30
+        Raw: 22.5
         Type: 0
       Y:
-        Raw: 30
+        Raw: 25
         Type: 0
       Z:
-        Raw: 2
+        Raw: 30
         Type: 0
     Position:
       X:
         Raw: -3
         Type: 0
       Y:
-        Raw: -0
+        Raw: -15
         Type: 0
       Z:
-        Raw: 0
+        Raw: 1
         Type: 0
     Padding:
       Left:
@@ -1050,12 +1069,12 @@ MonoBehaviour:
         Max: Infinity
     Alignment:
       X: 0
-      Y: 1
-      Z: -1
-    AutoSize:
-      X: 0
       Y: 0
       Z: 0
+    AutoSize:
+      X: 2
+      Y: 2
+      Z: 2
     RotateSize: 0
     AspectRatio: {x: 0, y: 0, z: 0}
     AspectRatioAxis: 0
@@ -1085,17 +1104,25 @@ MonoBehaviour:
       ExpandToGrid: 0
   visibility:
     ZIndex: 0
-    BlockType: 0
+    BlockType: 4
     Visible: 1
   surface:
     specularColor: {r: 1, g: 1, b: 1, a: 1}
     param1: 0.5
     param2: 0.5
-    LightingModel: 0
+    LightingModel: 1
     ShadowCastingMode: 2
     ReceiveShadows: 1
-  PreviewSize: {x: 30, y: 30, z: 2}
---- !u!114 &5311163784696002939
+  PreviewSize: {x: 22.5, y: 25, z: 30}
+  visuals:
+    Color: {r: 0.25882354, g: 0.25882354, b: 0.25882354, a: 0}
+    CornerRadius:
+      Raw: 0
+      Type: 0
+    EdgeRadius:
+      Raw: 0
+      Type: 0
+--- !u!114 &2950519244984934187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1108,18 +1135,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visuals:
-    rid: 4674147287897473025
+    rid: 4674147402815897600
   references:
     version: 2
     RefIds:
-    - rid: 4674147287897473025
+    - rid: 4674147402815897600
       type: {class: PanelItemVisuals, ns: NovaSamples.HandMenu, asm: Assembly-CSharp}
       data:
         Icon: {fileID: 7770715538564704888}
         Background: {fileID: 7770715536823344654}
-        root: {fileID: 5377171490634969488}
+        root: {fileID: 6797612114367876844}
         isChecked: 0
---- !u!114 &6608810211022760472
+--- !u!114 &1200192328313735409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1128,14 +1155,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 7770715537347949136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a133fbddc314fd9408a8e7968925d4c0, type: 3}
+  m_Script: {fileID: 11500000, guid: bd0e5f112b0a05b43b4ba50233a47743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 5377171490634969488}
-  BoolSetting:
-    name: isChecked
-    state: 0
-  ItemView: {fileID: 5311163784696002939}
+  ObstructDrags: 0
+  DragThreshold: 1
+  LowAccuracyDragThreshold: 30
+  ClickBehavior: 1
+  navigable: 1
+  onSelect: 0
+  autoSelect: 0
+  Navigation:
+    Left:
+      Type: 0
+      Fallback: 0
+      Target: {fileID: 0}
+    Right:
+      Type: 0
+      Fallback: 0
+      Target: {fileID: 0}
+    Down:
+      Type: 0
+      Fallback: 0
+      Target: {fileID: 0}
+    Up:
+      Type: 0
+      Fallback: 0
+      Target: {fileID: 0}
+    Forward:
+      Type: 1
+      Fallback: 1
+      Target: {fileID: 0}
+    Back:
+      Type: 1
+      Fallback: 1
+      Target: {fileID: 0}
+  draggable:
+    X: 0
+    Y: 0
+    Z: 0
+  GestureSpace: 0
+--- !u!114 &1056917954894941835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7770715537347949136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94662fab46346646aca8aa42bed51a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: {fileID: 0}
 --- !u!1 &7770715537804831511
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,9 +41,6 @@ namespace NovaSamples.HandMenu
 
         [Header("Lights")]
         [SerializeField]
-        [Tooltip("The primary direction light in the scene.")]
-        private Light directionLight = null;
-        [SerializeField]
         [Tooltip("A point light on one of the OVRHands index fingers.")]
         private Light fingerTipPointLight = null;
 
@@ -161,7 +158,7 @@ namespace NovaSamples.HandMenu
         {
             selectedPanelActive = false;
 
-            directionLight.enabled = true;
+            //directionLight.enabled = true;
             fingerTipPointLight.enabled = false;
         }
 
@@ -193,7 +190,7 @@ namespace NovaSamples.HandMenu
             // the primary direction light.
             if (panel.UseTorchPointer)
             {
-                directionLight.enabled = false;
+                //directionLight.enabled = false;
                 fingerTipPointLight.enabled = true;
             }
 

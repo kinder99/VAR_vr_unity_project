@@ -13,9 +13,6 @@ public class TeleportAnchor : MonoBehaviour
     public Transform teleportPosition;
 
     public XROrigin origin;
-    public Transform playerCamera;
-    public Transform playerCollider;
-    public Transform floorReference;
 
     [SerializeField] private SelectEnterEvent selectEnter;
     // Start is called before the first frame update

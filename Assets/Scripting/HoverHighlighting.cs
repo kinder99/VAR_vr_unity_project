@@ -8,9 +8,9 @@ public class HoverHighlighting : MonoBehaviour
     public Material original;
     public Material temp;
 
+    //simple methods to call on hover entered and exited events
     public void HoverEntered()
     {
-        //Debug.Log("prout");
         GetComponent<MeshRenderer>().material = temp;
     }
 

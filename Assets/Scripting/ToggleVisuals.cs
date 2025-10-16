@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//class to handle menu anchoring checkbox
 [System.Serializable]
 public class ToggleVisuals : ItemVisuals
 {
@@ -26,6 +27,7 @@ public class ToggleVisuals : ItemVisuals
         isChecked = !isChecked;
     }
 
+    //events
     internal static void HandleHover(Gesture.OnHover evt, ToggleVisuals target)
     {
         target.checkbox.Color = target.HoveredColor;

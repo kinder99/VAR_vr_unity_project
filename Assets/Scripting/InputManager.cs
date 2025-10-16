@@ -9,11 +9,13 @@ using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using XRController = UnityEngine.InputSystem.XR.XRController;
 
+//needed to make another input manager in order to have compatible controls with Nova package
 public class InputManager : MonoBehaviour
 {
     private const uint leftControllerID = 1;
     private const uint rightControllerID = 2;
 
+    //struct representing a single controller, handles raycasting and touch grip events
     [Serializable]
     private struct Controller
     {
@@ -74,7 +76,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("raycast", 1);
+        PlayerPrefs.SetInt("raycast", 1); //set raycasting as true at start of app
         PlayerPrefs.Save();
     }
 

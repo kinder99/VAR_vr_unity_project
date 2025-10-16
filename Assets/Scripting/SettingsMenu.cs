@@ -16,6 +16,7 @@ public class SettingsMenu : MonoBehaviour
     public ActionBasedController leftController = null;
     public ActionBasedController rightController = null;
 
+    //subscribe to all checkbox events and bind to the corresponding visuals
     private void Start()
     {
         root.AddGestureHandler<Gesture.OnHover, ToggleVisuals>(ToggleVisuals.HandleHover);
@@ -43,6 +44,8 @@ public class SettingsMenu : MonoBehaviour
         target.isChecked = BoolSettingAnchor.state;
     }
 
+    //disable raycasting and enable "touch" colliders, for press event
+    //actually unused, could remove
     private void HandlePress(Gesture.OnPress evt, RaycastVisuals target)
     {
         //BoolSettingRaycast.state = !BoolSettingRaycast.state;
@@ -80,13 +83,14 @@ public class SettingsMenu : MonoBehaviour
         target.isChecked = BoolSettingAnchor.state;
     }
 
+    //disable raycasting and enable "touch" colliders, for click event
     private void HandleToggleClicked(Gesture.OnClick evt, RaycastVisuals target)
     {
         BoolSettingRaycast.state = !BoolSettingRaycast.state;
         target.isChecked = BoolSettingRaycast.state;
         if (target.isChecked)
         {
-            PlayerPrefs.SetInt("raycast", 1);
+            PlayerPrefs.SetInt("raycast", 1); //save raycasting preference in player prefs, ugly but it works
             PlayerPrefs.Save();
             leftController.GetComponent<XRRayInteractor>().enabled = true;
             leftController.GetComponent<XRInteractorLineVisual>().enabled = true;
@@ -118,6 +122,7 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
+    //binds
     private void BindAnchor(BoolSetting setting, ToggleVisuals visuals)
     {
         visuals.label.Text = setting.name;

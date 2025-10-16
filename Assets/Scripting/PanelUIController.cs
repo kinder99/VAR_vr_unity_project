@@ -4,60 +4,39 @@ using UnityEngine.InputSystem;
 
 namespace NovaSamples.HandMenu
 {
-    /// <summary>
-    /// The component responsible for positioning a hand-tracked menu and opening/closing various UI panels triggered by the hand menu.
-    /// </summary>
     public class PanelUIController : MonoBehaviour
     {
         [SerializeField]
-        [Tooltip("The camera attached to the user's head.")]
         private Camera headTrackedCamera = null;
 
         [SerializeField]
-        [Tooltip("A transform at the center of the hand-tracked palm.")]
         private Transform palmTransform = null;
 
         [SerializeField]
-        [Tooltip("The threshold, in degrees, between the user's head and palm to activate/deactivate the Hand Launcher UI")]
         private float lowerShowLauncherThreshold = 50f;
 
         [SerializeField]
-        [Tooltip("The threshold, in degrees, between the user's head and palm to activate/deactivate the Hand Launcher UI")]
         private float upperShowLauncherThreshold = 80f;
 
         [Header("Panel Launching")]
         [SerializeField]
-        [Tooltip("The controller responsible for displaying a list of buttons that, when selected, will launch a given Panel UI.")]
         private HandLauncher handLauncher = null;
         [SerializeField]
-        [Tooltip("The Transform used to position/rotate the Hand Launcher UI.")]
         private Transform handLauncherPivot = null;
         [SerializeField]
-        [Tooltip("The Transform providing a world location to pop up a Panel UI.")]
         private Transform panelPopupLocation = null;
         [SerializeField]
-        [Tooltip("The list of panels which can be launched from the Hand Launcher UI.")]
         private List<Panel> Panels = null;
 
         [Header("Lights")]
         [SerializeField]
-        [Tooltip("A point light on one of the OVRHands index fingers.")]
         private Light fingerTipPointLight = null;
 
-        /// <summary>
-        /// Is the hand launcher UI enabled? 
-        /// </summary>
-        private bool handLauncherActive = false;
 
-        /// <summary>
-        /// Is the selected panel UI enabled? 
-        /// </summary>
+        private bool handLauncherActive = false;
         private bool selectedPanelActive = false;
 
-        /// <summary>
-        /// Is the user looking at their palm?
-        /// </summary>
-        private bool HandLauncherShouldBeActive
+        private bool HandLauncherShouldBeActive //check if settings button should pop up
         {
             get
             {
@@ -123,9 +102,6 @@ namespace NovaSamples.HandMenu
             return Mathf.Abs(angleBetweenHeadAndPalm);
         }
 
-        /// <summary>
-        /// Close the <see cref="handLauncher"/> UI.
-        /// </summary>
         public void HideHandLauncher()
         {
             if (!handLauncherActive)
@@ -137,9 +113,6 @@ namespace NovaSamples.HandMenu
             handLauncher.Hide();
         }
 
-        /// <summary>
-        /// Open the <see cref="handLauncher"/> UI.
-        /// </summary>
         private void ShowHandLauncher()
         {
             if (handLauncherActive)
@@ -151,9 +124,6 @@ namespace NovaSamples.HandMenu
             handLauncher.Show();
         }
 
-        /// <summary>
-        /// Handle panel closed event.
-        /// </summary>
         private void HandleSelectedPanelClosed()
         {
             selectedPanelActive = false;
@@ -162,10 +132,6 @@ namespace NovaSamples.HandMenu
             fingerTipPointLight.enabled = false;
         }
 
-        /// <summary>
-        /// Open a given panel UI when it's selected from the <see cref="handLauncher"/>.
-        /// </summary>
-        /// <param name="item">The item clicked in the <see cref="handLauncher"/> UI.</param>
         private void HandlePanelSelected(PanelItem item)
         {
             if (item.Panel == null)
@@ -174,7 +140,7 @@ namespace NovaSamples.HandMenu
                 return;
             }
 
-            // Get the index of the selected panel.
+            // Get the index of the selected panel, should only be settings since it's the only one
             int index = Panels.IndexOf(item.Panel);
 
             if (index == -1)
@@ -184,16 +150,6 @@ namespace NovaSamples.HandMenu
             }
 
             Panel panel = Panels[index];
-
-            // Panel requested Torch Pointer, so
-            // enable the point light and disable
-            // the primary direction light.
-            if (panel.UseTorchPointer)
-            {
-                //directionLight.enabled = false;
-                fingerTipPointLight.enabled = true;
-            }
-
             // Open the panel at the popup location
             panel.Open(panelPopupLocation.position, panelPopupLocation.rotation);
             
@@ -203,10 +159,6 @@ namespace NovaSamples.HandMenu
             // Close
             HideHandLauncher();
         }
-
-        /// <summary>
-        /// Reposition the <see cref="handLauncher"/> to a fixed offset from the user's hand.
-        /// </summary>
         private void RepositionMenu()
         {
             handLauncher.transform.SetPositionAndRotation(handLauncherPivot.position, handLauncherPivot.rotation);

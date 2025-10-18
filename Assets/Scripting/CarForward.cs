@@ -6,15 +6,23 @@ public class CarForward : MonoBehaviour
 {
     public GameObject car;
     public GameObject control;
+    public Transform controlSpawn;
     public CarSeating carSeating;
+    public float cooldown = 0;
 
     //some problems with the grabbing not interacting well with the position reset when still grabbed
     private void OnTriggerEnter(Collider other)
     {
-        if(carSeating.isSeated)
+        if(carSeating.isSeated && cooldown <= 0)
         {
+            cooldown = 5;
             StartCoroutine(MoveOverSpeed(car, new Vector3(35.15f, -0.001f, 0.85f), 3.6f));
         }
+    }
+
+    private void FixedUpdate()
+    {
+        cooldown -= Time.deltaTime;
     }
 
     public IEnumerator MoveOverSpeed(GameObject objectToMove, Vector3 end, float speed)
@@ -25,7 +33,8 @@ public class CarForward : MonoBehaviour
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, speed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        control.transform.position = this.transform.position - Vector3.up * 0.15f;
+        control.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        control.transform.position = controlSpawn.position;
     }
 
     public IEnumerator MoveOverSeconds(GameObject objectToMove, Vector3 end, float seconds)

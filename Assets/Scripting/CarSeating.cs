@@ -12,6 +12,8 @@ public class CarSeating : MonoBehaviour
     public Transform seatLocation;
     public CapsuleCollider capsuleCollider;
     public Transform dismountLocation;
+    public GameObject control;
+    public Transform controlSpawn;
 
     //seat logic, should teleport origin to seat and lock joystick movement when seat is
     //interacted with and free up after another interaction
@@ -19,6 +21,8 @@ public class CarSeating : MonoBehaviour
     {
         if(!isSeated)
         {
+            control.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            control.transform.position = controlSpawn.position;
             isSeated = true;
             player.transform.SetParent(this.transform);
             player.GetComponent<LocomotionSystem>().enabled = false;
@@ -26,7 +30,10 @@ public class CarSeating : MonoBehaviour
             player.GetComponent<Rigidbody>().useGravity = false;
             player.MoveCameraToWorldLocation(seatLocation.transform.position);
         }
-        else { 
+        else
+        {
+            control.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            control.transform.position = controlSpawn.position;
             isSeated = false;
             player.transform.SetParent(null);
             player.MoveCameraToWorldLocation(dismountLocation.transform.position);

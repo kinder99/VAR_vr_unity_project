@@ -777,6 +777,7 @@ MonoBehaviour:
   interactable: {fileID: 162960496}
   teleportPosition: {fileID: 1269315247}
   origin: {fileID: 752936480}
+  carSeating: {fileID: 0}
   selectEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -9707,7 +9708,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16417,6 +16418,7 @@ MonoBehaviour:
   interactable: {fileID: 1200415747}
   teleportPosition: {fileID: 1830452201}
   origin: {fileID: 752936480}
+  carSeating: {fileID: 0}
   selectEnter:
     m_PersistentCalls:
       m_Calls: []

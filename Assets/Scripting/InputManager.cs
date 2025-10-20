@@ -1,13 +1,8 @@
 using Nova;
 using System;
-using System.Collections.Generic;
-using System.Net;
-using UnityEditor.XR.Interaction.Toolkit;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
-using XRController = UnityEngine.InputSystem.XR.XRController;
 
 //needed to make another input manager in order to have compatible controls with Nova package
 public class InputManager : MonoBehaviour

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class CarSeating : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class CarSeating : MonoBehaviour
     public Transform seatLocation;
     public CapsuleCollider capsuleCollider;
     public Transform dismountLocation;
-    public GameObject control;
-    public Transform controlSpawn;
+    public GameObject control = null;
+    public Transform controlSpawn = null;
 
     //seat logic, should teleport origin to seat and lock joystick movement when seat is
     //interacted with and free up after another interaction
@@ -21,23 +22,31 @@ public class CarSeating : MonoBehaviour
     {
         if(!isSeated)
         {
-            control.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            control.transform.position = controlSpawn.position;
+            if(control != null)
+            {
+                control.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                control.transform.position = controlSpawn.position;
+            }
             isSeated = true;
             player.transform.SetParent(this.transform);
             player.GetComponent<LocomotionSystem>().enabled = false;
+            player.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
             capsuleCollider.enabled = false;
             player.GetComponent<Rigidbody>().useGravity = false;
             player.MoveCameraToWorldLocation(seatLocation.transform.position);
         }
         else
         {
-            control.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            control.transform.position = controlSpawn.position;
+            if(control != null)
+            {
+                control.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                control.transform.position = controlSpawn.position;
+            }
             isSeated = false;
             player.transform.SetParent(null);
             player.MoveCameraToWorldLocation(dismountLocation.transform.position);
             player.GetComponent<LocomotionSystem>().enabled = true;
+            player.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
             capsuleCollider.enabled = true;
             player.GetComponent<Rigidbody>().useGravity = true;
         }

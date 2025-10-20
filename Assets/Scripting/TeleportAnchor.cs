@@ -14,6 +14,8 @@ public class TeleportAnchor : MonoBehaviour
 
     public XROrigin origin;
 
+    public CarSeating carSeating;
+
     [SerializeField] private SelectEnterEvent selectEnter;
     // Start is called before the first frame update
     void Start()
@@ -30,12 +32,14 @@ public class TeleportAnchor : MonoBehaviour
 
     public void Test(SelectEnterEventArgs args)
     {
-        this.Teleport();
+        if (!carSeating.isSeated)
+        {
+            this.Teleport();
+        }
     }
     
     public void Teleport()
     {
-
         Vector3 pos = teleportPosition.position;
         origin.MoveCameraToWorldLocation(pos);
     }
